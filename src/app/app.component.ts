@@ -13,16 +13,16 @@ export class AppComponent {
   download(url: string) {
     this.fileService.downloadFile(url).subscribe(
       response => {
-        let blob: any = new Blob([response], { type: 'application/pdf' });
+        const blob: any = new Blob([response], { type: 'application/pdf' });
 
-        const url: string = window.URL.createObjectURL(blob);
-        let filename = url.split('/').pop();
+        const urls: string = window.URL.createObjectURL(blob);
+        const filename = urls.split('/').pop();
 
 
-        //window.open(url);
-        //window.location.href = response.url;
+        // window.open(urls);
+        // window.location.href = response.url;
         fileSaver.saveAs(blob, filename);
       }
-    )
+    );
   }
 }
